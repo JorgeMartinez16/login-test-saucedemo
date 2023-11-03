@@ -5,6 +5,11 @@
             <class name="utils.tests.SauceDemoLoginTest"/>
         </classes>
     </test>
+    <test name="SauceDemoProductTest">
+        <classes>
+            <class name="utils.tests.SauceDemoProductTest"/>
+        </classes>
+    </test>
 </suite>
 
 

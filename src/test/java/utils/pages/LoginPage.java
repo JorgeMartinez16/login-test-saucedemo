@@ -15,6 +15,15 @@ public class LoginPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Establece un tiempo máximo de espera de 10 segundos
     }
+
+    public void login(String username, String password) {
+        // Ingresamos user y password validos para iniciar sesion
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name"))).sendKeys(username);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password"))).sendKeys(password);
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("login-button"))).click();
+
+
+    }
     public WebElement getUsernameField() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
     }
