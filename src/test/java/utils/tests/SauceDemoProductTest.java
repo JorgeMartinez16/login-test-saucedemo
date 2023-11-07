@@ -29,7 +29,33 @@ public class SauceDemoProductTest {
     public void testProductPage() {
         productsPage.clickProduct("Sauce Labs Backpack");
         productsPage.waitForThreeSeconds();
+        driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
     }
+
+    @Test
+    public void TestAddProductToCar(){
+        productsPage.clickProduct("Sauce Labs Backpack");
+        productsPage.clickOnCartButton();
+        productsPage.waitForThreeSeconds();
+        driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
+        productsPage.waitForThreeSeconds();
+
+    }
+
+    @Test
+    public void TestAddSomeProductsToCar(){
+        productsPage.clickProduct("Sauce Labs Backpack");
+        productsPage.clickOnCartButton();
+        driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
+        productsPage.waitForOneSeconds();
+        productsPage.clickProduct("Sauce Labs Bolt T-Shirt");
+        productsPage.clickOnCartButton();
+        driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
+        productsPage.ClickToShowCar();
+        productsPage.waitForThreeSeconds();
+    }
+
+
 
     @AfterMethod
     public void tearDown() {

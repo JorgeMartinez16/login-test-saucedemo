@@ -22,9 +22,26 @@ public class ProductsPage {
         product.click();
     }
 
+    public void clickOnCartButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn_primary.btn_inventory"))).click();
+    }
+
+    public void ClickToShowCar() {
+        WebElement cartButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.shopping_cart_link")));
+        cartButton.click();
+    }
+
     public void waitForThreeSeconds() {
         try {
             Thread.sleep(3000); // Espera 3 segundos
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void waitForOneSeconds() {
+        try {
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
