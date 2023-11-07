@@ -22,7 +22,7 @@ public class ProductsPage {
         product.click();
     }
 
-    public void clickOnCartButton() {
+    public void addProductToCar() {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn_primary.btn_inventory"))).click();
     }
 

@@ -2,14 +2,19 @@ package utils.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.pages.CheckoutPage;
 import utils.pages.LoginPage;
 import utils.pages.ProductsPage;
 
-public class SauceDemoProductTest {
-    private WebDriver driver;
+public class SauceDemonCheckoutTest {
+    public WebDriver driver;
+    public WebDriverWait wait;
+
+    private CheckoutPage checkoutPage;
     private ProductsPage productsPage;
 
     @BeforeMethod
@@ -20,41 +25,28 @@ public class SauceDemoProductTest {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("standard_user", "secret_sauce");
-
+        checkoutPage = new CheckoutPage(driver);
+        checkoutPage.waitForThreeSeconds();
         productsPage = new ProductsPage(driver);
-        productsPage.waitForThreeSeconds();
-    }
-
-    @Test
-    public void testProductPage() {
-        productsPage.clickProduct("Sauce Labs Backpack");
-        productsPage.waitForThreeSeconds();
-        driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
-    }
-
-    @Test
-    public void TestAddProductToCar(){
-        productsPage.clickProduct("Sauce Labs Backpack");
-        productsPage.addProductToCar();
-        productsPage.waitForThreeSeconds();
-        driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
-        productsPage.waitForThreeSeconds();
 
     }
 
+
     @Test
-    public void TestAddSomeProductsToCar(){
+    public void TestCheckoutCar() {
         productsPage.clickProduct("Sauce Labs Backpack");
         productsPage.addProductToCar();
         driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
-        productsPage.waitForOneSeconds();
         productsPage.clickProduct("Sauce Labs Bolt T-Shirt");
         productsPage.addProductToCar();
         driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
         productsPage.ClickToShowCar();
-        productsPage.waitForThreeSeconds();
-    }
+        driver.navigate().to("https://www.saucedemo.com/v1/cart.html");
+        checkoutPage.goToCheckoutCar();
+        checkoutPage.checkoutInformation("Jorge", "Martinez", "13007");
+        checkoutPage.finishShipping();
 
+    }
 
 
     @AfterMethod
@@ -63,4 +55,6 @@ public class SauceDemoProductTest {
             driver.quit();
         }
     }
+
+
 }
